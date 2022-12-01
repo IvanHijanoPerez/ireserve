@@ -1,7 +1,5 @@
 package com.example.ireserve;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -9,6 +7,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -57,8 +57,8 @@ public class VistaMiPublicacion extends AppCompatActivity {
         List<String> dia = new ArrayList<>();
         List<String> hora = new ArrayList<>();
         List<Publicacion> l = new ArrayList<>();
-        for(Publicacion p : listaPub){
-            if(p.foto.equals(idPublicacion)){
+        for (Publicacion p : listaPub) {
+            if (p.foto.equals(idPublicacion)) {
                 titulo = p.titulo;
                 precio = p.precio;
                 direccion = p.direccion;
@@ -71,9 +71,9 @@ public class VistaMiPublicacion extends AppCompatActivity {
         pprecio.setText(precio + "€");
         pdireccion.setText(direccion);
 
-        StorageReference reference = FirebaseStorage.getInstance().getReference().child("Imagenes/"+foto);
-        try{
-            File localFile = File.createTempFile("imagen","jpg");
+        StorageReference reference = FirebaseStorage.getInstance().getReference().child("Imagenes/" + foto);
+        try {
+            File localFile = File.createTempFile("imagen", "jpg");
             reference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
@@ -81,29 +81,29 @@ public class VistaMiPublicacion extends AppCompatActivity {
                     pfoto.setImageBitmap(bitmap);
                 }
             });
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         String[] dias = new String[dia.size()];
         dias = dia.toArray(dias);
-        for(int i = 0 ; i<dias.length; i++){
-            if(dias[i].contains("[")){
+        for (int i = 0; i < dias.length; i++) {
+            if (dias[i].contains("[")) {
                 dias[i] = dias[i].substring(1);
             }
-            if(dias[i].contains("]")){
-                dias[i] = dias[i].substring(0, dias[i].length()-1);
+            if (dias[i].contains("]")) {
+                dias[i] = dias[i].substring(0, dias[i].length() - 1);
             }
         }
 
         String[] horas = new String[hora.size()];
         horas = hora.toArray(horas);
-        for(int i = 0 ; i<horas.length; i++){
-            if(horas[i].contains("[")){
+        for (int i = 0; i < horas.length; i++) {
+            if (horas[i].contains("[")) {
                 horas[i] = horas[i].substring(1);
             }
-            if(horas[i].contains("]")){
-                horas[i] = horas[i].substring(0, horas[i].length()-1);
+            if (horas[i].contains("]")) {
+                horas[i] = horas[i].substring(0, horas[i].length() - 1);
             }
         }
 

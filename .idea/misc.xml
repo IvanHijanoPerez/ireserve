@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/iReserve/app/src/main/res/layout/activity_busqueda_publicaciones.xml" value="0.18802083333333333" />
+        <entry key="..\:/AndroidStudioProjects/iReserve/app/src/main/res/layout/activity_home_usuario.xml" value="0.18802083333333333" />
+        <entry key="..\:/AndroidStudioProjects/iReserve/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/AndroidStudioProjects/iReserve/app/src/main/res/layout/activity_mis_publicaciones.xml" value="0.18802083333333333" />
         <entry key="..\:/ProyectosAndroidStudio/iReserve/iReserve/app/src/main/res/layout/activity_busqueda_publicaciones.xml" value="0.32894736842105265" />
         <entry key="..\:/ProyectosAndroidStudio/iReserve/iReserve/app/src/main/res/layout/activity_home.xml" value="0.35507246376811596" />
         <entry key="..\:/ProyectosAndroidStudio/iReserve/iReserve/app/src/main/res/layout/activity_home_usuario.xml" value="0.20729166666666668" />

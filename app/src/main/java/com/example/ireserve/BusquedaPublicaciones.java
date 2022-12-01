@@ -1,23 +1,18 @@
 package com.example.ireserve;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class BusquedaPublicaciones extends AppCompatActivity {
 
@@ -44,17 +39,15 @@ public class BusquedaPublicaciones extends AppCompatActivity {
         listaPub = SingletonMap.getInstance().map.get("publicaciones");
 
         List<Publicacion> l = new ArrayList<>();
-        for(Publicacion p : listaPub){
-            if(((containsIgnoreCase(p.titulo,filtro) || containsIgnoreCase(p.descripcion,filtro) || containsIgnoreCase(p.direccion,filtro)) && !p.creador.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))){
+        for (Publicacion p : listaPub) {
+            if (((containsIgnoreCase(p.titulo, filtro) || containsIgnoreCase(p.descripcion, filtro) || containsIgnoreCase(p.direccion, filtro)) && !p.creador.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))) {
                 l.add(p);
             }
         }
 
-        PublicacionAdapter publicacionAdapter = new PublicacionAdapter(BusquedaPublicaciones.this,R.layout.list_item,l);
+        PublicacionAdapter publicacionAdapter = new PublicacionAdapter(BusquedaPublicaciones.this, R.layout.list_item, l);
         listaPublicaciones.setAdapter(publicacionAdapter);
 
-        //arrayentidad = GetArrayItems();
-        //adapatador = new PublicacionAdapter(this, arrayentidad);
         listaPublicaciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -65,8 +58,8 @@ public class BusquedaPublicaciones extends AppCompatActivity {
         });
     }
 
-    public static boolean containsIgnoreCase(String str, String searchStr)     {
-        if(str == null || searchStr == null) return false;
+    public static boolean containsIgnoreCase(String str, String searchStr) {
+        if (str == null || searchStr == null) return false;
 
         final int length = searchStr.length();
         if (length == 0)

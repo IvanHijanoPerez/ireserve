@@ -1,28 +1,23 @@
 package com.example.ireserve;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeUsuario extends AppCompatActivity implements View.OnClickListener{
+public class HomeUsuario extends AppCompatActivity implements View.OnClickListener {
 
     private TextView logOut;
     private TextView filtroBusqueda;
@@ -57,29 +52,24 @@ public class HomeUsuario extends AppCompatActivity implements View.OnClickListen
 
         filtroBusqueda = (TextView) findViewById(R.id.filtroBusqueda);
 
-        //user = FirebaseAuth.getInstance().getCurrentUser();
-        //correo = user.getEmail();
-        //email = (TextView) findViewById(R.id.perfil);
-        //email.setText(correo);
-
 
         String em = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         List<Usuario> lu = SingletonMap.getInstance().map.get("usuarios");
-        for(Usuario u : lu){
-            if(u.email.equals(em)){
+        for (Usuario u : lu) {
+            if (u.email.equals(em)) {
                 nombre.setText(u.nombreCompleto);
             }
         }
 
 
         listaReservas = SingletonMap.getInstance().map.get("reservas");
-        for(Reserva l : listaReservas){
-            if(l.usuario.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+        for (Reserva l : listaReservas) {
+            if (l.usuario.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
                 listaReservasUsuario.add(l);
             }
         }
 
-        ReservaAdapter reservaAdapter = new ReservaAdapter(HomeUsuario.this,R.layout.list_item_reserva, listaReservasUsuario);
+        ReservaAdapter reservaAdapter = new ReservaAdapter(HomeUsuario.this, R.layout.list_item_reserva, listaReservasUsuario);
         lvreservas.setAdapter(reservaAdapter);
 
     }
@@ -87,10 +77,10 @@ public class HomeUsuario extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
 
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.cerrarsesion:
                 FirebaseAuth.getInstance().signOut();
-                Toast.makeText(HomeUsuario.this,"Cierre de sesión con éxito", Toast.LENGTH_LONG).show();
+                Toast.makeText(HomeUsuario.this, "Cierre de sesión con éxito", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(this, MainActivity.class));
                 break;
             case R.id.publicarservicio:

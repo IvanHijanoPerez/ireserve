@@ -1,7 +1,5 @@
 package com.example.ireserve;
 
-import java.util.Date;
-
 public class Reserva {
     String publicacion, usuario, fecha, hora;
 

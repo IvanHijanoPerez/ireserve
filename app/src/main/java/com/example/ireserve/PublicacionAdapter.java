@@ -25,8 +25,8 @@ import java.util.List;
 public class PublicacionAdapter extends ArrayAdapter<Publicacion> {
 
 
-    public PublicacionAdapter(Context context, int list_item, List<Publicacion> publicacionArrayList){
-        super(context,R.layout.list_item,publicacionArrayList);
+    public PublicacionAdapter(Context context, int list_item, List<Publicacion> publicacionArrayList) {
+        super(context, R.layout.list_item, publicacionArrayList);
     }
 
     @NonNull
@@ -35,9 +35,9 @@ public class PublicacionAdapter extends ArrayAdapter<Publicacion> {
 
         Publicacion publicacion = getItem(position);
 
-        if (convertView == null){
+        if (convertView == null) {
 
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item,parent,false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
 
         }
 
@@ -45,9 +45,9 @@ public class PublicacionAdapter extends ArrayAdapter<Publicacion> {
         TextView titulo = convertView.findViewById(R.id.tituloItem);
         TextView direccion = convertView.findViewById(R.id.direccionItem);
 
-        StorageReference reference = FirebaseStorage.getInstance().getReference().child("Imagenes/"+publicacion.foto);
-        try{
-            File localFile = File.createTempFile("imagen","jpg");
+        StorageReference reference = FirebaseStorage.getInstance().getReference().child("Imagenes/" + publicacion.foto);
+        try {
+            File localFile = File.createTempFile("imagen", "jpg");
             reference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
@@ -55,7 +55,7 @@ public class PublicacionAdapter extends ArrayAdapter<Publicacion> {
                     foto.setImageBitmap(bitmap);
                 }
             });
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

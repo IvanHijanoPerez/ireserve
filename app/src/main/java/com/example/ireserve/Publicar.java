@@ -1,11 +1,5 @@
 package com.example.ireserve;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,11 +10,13 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TimePicker;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,16 +34,11 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
 public class Publicar extends AppCompatActivity {
 
@@ -81,7 +72,7 @@ public class Publicar extends AppCompatActivity {
         direccionboton = findViewById(R.id.direccionboton);
 
         publicar = findViewById(R.id.publicarservicio);
-        Places.initialize(getApplicationContext(),"AIzaSyC1GXp71yv3zHYbZBvgu6a0CTL7SMxEZzk");
+        Places.initialize(getApplicationContext(), "AIzaSyC1GXp71yv3zHYbZBvgu6a0CTL7SMxEZzk");
 
 
         //DIRECCION
@@ -90,9 +81,9 @@ public class Publicar extends AppCompatActivity {
         direccionboton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS,Place.Field.LAT_LNG,Place.Field.NAME);
-                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY,fieldList).build(Publicar.this);
-                startActivityForResult(intent,100);
+                List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME);
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fieldList).build(Publicar.this);
+                startActivityForResult(intent, 100);
             }
         });
 
@@ -111,8 +102,8 @@ public class Publicar extends AppCompatActivity {
 
         //storageReference = FirebaseStorage.getInstance().getReference("Images");
         //databaseReference = FirebaseDatabase.getInstance().getReference("Images");
-        imagenboton = (Button)findViewById(R.id.imagenboton);
-        foto = (ImageView)findViewById(R.id.foto);
+        imagenboton = (Button) findViewById(R.id.imagenboton);
+        foto = (ImageView) findViewById(R.id.foto);
 
 
         imagenboton.setOnClickListener(new View.OnClickListener() {
@@ -168,12 +159,12 @@ public class Publicar extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         //FECHA
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 100 && resultCode == RESULT_OK){
+        if (requestCode == 100 && resultCode == RESULT_OK) {
             Place place = Autocomplete.getPlaceFromIntent(data);
             direccion.setText(place.getAddress());
-        }else if(resultCode == AutocompleteActivity.RESULT_ERROR){
+        } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
             Status status = Autocomplete.getStatusFromIntent(data);
-            Toast.makeText(getApplicationContext(),status.getStatusMessage(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), status.getStatusMessage(), Toast.LENGTH_SHORT).show();
         }
 
         //IMAGEN
@@ -184,8 +175,7 @@ public class Publicar extends AppCompatActivity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), FilePathUri);
                 foto.setImageBitmap(bitmap);
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
 
                 e.printStackTrace();
             }
@@ -193,17 +183,16 @@ public class Publicar extends AppCompatActivity {
     }
 
 
-
     public String GetFileExtension(Uri uri) {
 
         ContentResolver contentResolver = getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri)) ;
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
 
     }
 
     //PUBLICAR
-    private void publicar(){
+    private void publicar() {
         String tit = titulo.getText().toString().trim();
         String dir = direccion.getText().toString().trim();
         String des = descripcion.getText().toString().trim();
@@ -211,34 +200,34 @@ public class Publicar extends AppCompatActivity {
         String pre = precio.getText().toString().trim();
         String hor = horas.getText().toString().trim();
 
-        if(tit.isEmpty()){
+        if (tit.isEmpty()) {
             titulo.setError("Título requerido");
             titulo.requestFocus();
             return;
         }
-        if(dir.isEmpty()){
+        if (dir.isEmpty()) {
             direccion.setError("Dirección requerida");
             direccion.requestFocus();
             return;
         }
-        if(des.isEmpty()){
+        if (des.isEmpty()) {
             descripcion.setError("Descripción requerida");
             descripcion.requestFocus();
             return;
         }
 
-        if(!lunes.isChecked() && !martes.isChecked() && !miercoles.isChecked() && !jueves.isChecked() && !viernes.isChecked() && !sabado.isChecked() && !domingo.isChecked()){
-            Toast.makeText(Publicar.this,"Debes elegir mínimo un día", Toast.LENGTH_LONG).show();
+        if (!lunes.isChecked() && !martes.isChecked() && !miercoles.isChecked() && !jueves.isChecked() && !viernes.isChecked() && !sabado.isChecked() && !domingo.isChecked()) {
+            Toast.makeText(Publicar.this, "Debes elegir mínimo un día", Toast.LENGTH_LONG).show();
             return;
         }
 
-        if(hor.isEmpty()){
+        if (hor.isEmpty()) {
             horas.setError("Hora requerida");
             horas.requestFocus();
             return;
         }
 
-        if(!hor.contains("-") || !hor.contains(":")){
+        if (!hor.contains("-") || !hor.contains(":")) {
             horas.setError("El horario debe tener horas válidas (XX:XX-XX:XX)");
             horas.requestFocus();
             return;
@@ -248,13 +237,13 @@ public class Publicar extends AppCompatActivity {
             fecha.requestFocus();
             return;
         }*/
-        if(pre.isEmpty()){
+        if (pre.isEmpty()) {
             precio.setError("Precio requerido");
             precio.requestFocus();
             return;
         }
-        if(FilePathUri == null){
-            Toast.makeText(Publicar.this,"Imágen requerida", Toast.LENGTH_LONG).show();
+        if (FilePathUri == null) {
+            Toast.makeText(Publicar.this, "Imágen requerida", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -266,44 +255,57 @@ public class Publicar extends AppCompatActivity {
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                         Map<String, Object> publicacion = new HashMap<>();
-                        publicacion.put("titulo",tit);
-                        publicacion.put("direccion",dir);
-                        publicacion.put("descripcion",des);
+                        publicacion.put("titulo", tit);
+                        publicacion.put("direccion", dir);
+                        publicacion.put("descripcion", des);
                         List dias = new ArrayList();
-                        if(lunes.isChecked()){ dias.add("lunes");}
-                        if(martes.isChecked()){ dias.add("martes");}
-                        if(miercoles.isChecked()){ dias.add("miercoles");}
-                        if(jueves.isChecked()){ dias.add("jueves");}
-                        if(viernes.isChecked()){ dias.add("viernes");}
-                        if(sabado.isChecked()){ dias.add("sabado");}
-                        if(domingo.isChecked()){ dias.add("domingo");}
+                        if (lunes.isChecked()) {
+                            dias.add("lunes");
+                        }
+                        if (martes.isChecked()) {
+                            dias.add("martes");
+                        }
+                        if (miercoles.isChecked()) {
+                            dias.add("miercoles");
+                        }
+                        if (jueves.isChecked()) {
+                            dias.add("jueves");
+                        }
+                        if (viernes.isChecked()) {
+                            dias.add("viernes");
+                        }
+                        if (sabado.isChecked()) {
+                            dias.add("sabado");
+                        }
+                        if (domingo.isChecked()) {
+                            dias.add("domingo");
+                        }
                         List horas = Arrays.asList(hor.split(",").clone());
-                        publicacion.put("horas",horas);
-                        publicacion.put("dias",dias);
-                        //publicacion.put("fecha",fe);
-                        publicacion.put("creador",FirebaseAuth.getInstance().getCurrentUser().getUid());
-                        publicacion.put("precio",pre);
+                        publicacion.put("horas", horas);
+                        publicacion.put("dias", dias);
+                        publicacion.put("creador", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                        publicacion.put("precio", pre);
                         publicacion.put("foto", key);
 
                         FirebaseDatabase.getInstance("https://ireseve-8ead4-default-rtdb.europe-west1.firebasedatabase.app").getReference("Publicaciones")
                                 .child(key)
                                 .setValue(publicacion).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
 
-                                    Toast.makeText(Publicar.this,"Publicación registrada con éxito", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(Publicar.this, "Publicación registrada con éxito", Toast.LENGTH_LONG).show();
 
-                                    SingletonMap.getInstance().anadirPublicacion(des,dir,key,pre,tit,dias,horas);
+                                            SingletonMap.getInstance().anadirPublicacion(des, dir, key, pre, tit, dias, horas);
 
-                                    Intent home = new Intent(Publicar.this, HomeUsuario.class);
-                                    startActivity(home);
-                                }else{
-                                    Toast.makeText(Publicar.this,"Error al registrar la publicación", Toast.LENGTH_LONG).show();
-                                }
+                                            Intent home = new Intent(Publicar.this, HomeUsuario.class);
+                                            startActivity(home);
+                                        } else {
+                                            Toast.makeText(Publicar.this, "Error al registrar la publicación", Toast.LENGTH_LONG).show();
+                                        }
 
-                            }
-                        });
+                                    }
+                                });
 
 
                     }

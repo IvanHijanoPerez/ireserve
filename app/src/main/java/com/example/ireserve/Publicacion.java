@@ -17,6 +17,7 @@ public class Publicacion {
         this.dias = dias;
         this.horas = horas;
     }
+
     public String getFoto() {
         return foto;
     }

@@ -3,7 +3,6 @@ package com.example.ireserve;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,30 +20,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
 public class VistaPublicacion extends AppCompatActivity implements View.OnClickListener {
 
@@ -122,60 +112,38 @@ public class VistaPublicacion extends AppCompatActivity implements View.OnClickL
 
         dias = new String[dia.size()];
         dias = dia.toArray(dias);
-        /*for (int i = 0; i < dias.length; i++) {
-            if (dias[i].contains("[")) {
-                dias[i] = dias[i].substring(1);
-            }
-            if (dias[i].contains("]")) {
-                dias[i] = dias[i].substring(0, dias[i].length() - 1);
-            }
-        }*/
 
         LocalDate ld = LocalDate.now();
 
-        for(int i = 0 ; i<dias.length; i++){
-            if(dias[i].equalsIgnoreCase("lunes")){
-                dias[i] =getString(R.string.lunes) + " " + ld.with(TemporalAdjusters.next(DayOfWeek.MONDAY)).toString();
+        for (int i = 0; i < dias.length; i++) {
+            if (dias[i].equalsIgnoreCase("lunes")) {
+                dias[i] = getString(R.string.lunes) + " " + ld.with(TemporalAdjusters.next(DayOfWeek.MONDAY)).toString();
             }
-            if(dias[i].equalsIgnoreCase("martes")){
-                dias[i] =getString(R.string.martes) + " " + ld.with(TemporalAdjusters.next(DayOfWeek.TUESDAY)).toString();
+            if (dias[i].equalsIgnoreCase("martes")) {
+                dias[i] = getString(R.string.martes) + " " + ld.with(TemporalAdjusters.next(DayOfWeek.TUESDAY)).toString();
             }
-            if(dias[i].equalsIgnoreCase("miercoles")){
-                dias[i] =getString(R.string.miercoles) + " " + ld.with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY)).toString();
+            if (dias[i].equalsIgnoreCase("miercoles")) {
+                dias[i] = getString(R.string.miercoles) + " " + ld.with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY)).toString();
             }
-            if(dias[i].equalsIgnoreCase("jueves")){
-                dias[i] =getString(R.string.jueves) + " " + ld.with(TemporalAdjusters.next(DayOfWeek.THURSDAY)).toString();
+            if (dias[i].equalsIgnoreCase("jueves")) {
+                dias[i] = getString(R.string.jueves) + " " + ld.with(TemporalAdjusters.next(DayOfWeek.THURSDAY)).toString();
             }
-            if(dias[i].equalsIgnoreCase("viernes")){
-                dias[i] =getString(R.string.viernes) + " " + ld.with(TemporalAdjusters.next(DayOfWeek.FRIDAY)).toString();
+            if (dias[i].equalsIgnoreCase("viernes")) {
+                dias[i] = getString(R.string.viernes) + " " + ld.with(TemporalAdjusters.next(DayOfWeek.FRIDAY)).toString();
             }
-            if(dias[i].equalsIgnoreCase("sabado")){
-                dias[i] =getString(R.string.sabado) + " " + ld.with(TemporalAdjusters.next(DayOfWeek.SATURDAY)).toString();
+            if (dias[i].equalsIgnoreCase("sabado")) {
+                dias[i] = getString(R.string.sabado) + " " + ld.with(TemporalAdjusters.next(DayOfWeek.SATURDAY)).toString();
             }
-            if(dias[i].equalsIgnoreCase("domingo")){
-                dias[i] =getString(R.string.domingo) + " " + ld.with(TemporalAdjusters.next(DayOfWeek.SUNDAY)).toString();
+            if (dias[i].equalsIgnoreCase("domingo")) {
+                dias[i] = getString(R.string.domingo) + " " + ld.with(TemporalAdjusters.next(DayOfWeek.SUNDAY)).toString();
             }
         }
 
 
 
-
-
-
-        /*for (int i = 0; i < horas.length; i++) {
-            if (horas[i].contains("[")) {
-                horas[i] = horas[i].substring(1);
-            }
-            if (horas[i].contains("]")) {
-                horas[i] = horas[i].substring(0, horas[i].length() - 1);
-            }
-        }*/
-
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(VistaPublicacion.this, android.R.layout.simple_list_item_single_choice, dias);
         lvdias.setAdapter(adapter);
         lvdias.setChoiceMode(1);
-
 
 
         lvdias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -189,24 +157,22 @@ public class VistaPublicacion extends AppCompatActivity implements View.OnClickL
                 horas = hora.toArray(horas);
 
 
-
                 List<String> fHoras = new ArrayList<>();
 
                 List<Reserva> res = SingletonMap.getInstance().map.get("reservas");
                 for (int i = 0; i < horas.length; i++) {
                     Boolean esta = false;
-                    for(Reserva r : res){
-                        if(r.fecha.equals(fechaReserva) && r.hora.equals(horas[i])){
+                    for (Reserva r : res) {
+                        if (r.fecha.equals(fechaReserva) && r.hora.equals(horas[i])) {
                             esta = true;
                         }
                     }
-                    if(!esta){
+                    if (!esta) {
                         fHoras.add(horas[i]);
                     }
                 }
                 horasFinal = new String[fHoras.size()];
                 horasFinal = fHoras.toArray(horasFinal);
-
 
 
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(VistaPublicacion.this, android.R.layout.simple_list_item_single_choice, horasFinal);
@@ -234,39 +200,39 @@ public class VistaPublicacion extends AppCompatActivity implements View.OnClickL
 
     }
 
-    public void crearReserva(){
-        if(fechaReserva == "" || horaReserva == ""){
-            Toast.makeText(VistaPublicacion.this,"Debe de seleccionar una fecha y hora", Toast.LENGTH_LONG).show();
+    public void crearReserva() {
+        if (fechaReserva == "" || horaReserva == "") {
+            Toast.makeText(VistaPublicacion.this, "Debe de seleccionar una fecha y hora", Toast.LENGTH_LONG).show();
             return;
         }
         String key = FirebaseDatabase.getInstance("https://ireseve-8ead4-default-rtdb.europe-west1.firebasedatabase.app").getReference("Reservas").push().getKey();
 
         Map<String, Object> reserva = new HashMap<>();
-        reserva.put("publicacion",idPublicacion);
-        reserva.put("usuario",FirebaseAuth.getInstance().getCurrentUser().getUid());
-        reserva.put("fecha",fechaReserva);
-        reserva.put("hora",horaReserva);
+        reserva.put("publicacion", idPublicacion);
+        reserva.put("usuario", FirebaseAuth.getInstance().getCurrentUser().getUid());
+        reserva.put("fecha", fechaReserva);
+        reserva.put("hora", horaReserva);
 
 
         FirebaseDatabase.getInstance("https://ireseve-8ead4-default-rtdb.europe-west1.firebasedatabase.app").getReference("Reservas")
                 .child(key)
                 .setValue(reserva).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
 
-                    Toast.makeText(VistaPublicacion.this,"Reserva registrada con éxito", Toast.LENGTH_LONG).show();
+                            Toast.makeText(VistaPublicacion.this, "Reserva registrada con éxito", Toast.LENGTH_LONG).show();
 
-                    SingletonMap.getInstance().anadirReserva(idPublicacion,fechaReserva,horaReserva);
+                            SingletonMap.getInstance().anadirReserva(idPublicacion, fechaReserva, horaReserva);
 
-                    Intent home = new Intent(VistaPublicacion.this, HomeUsuario.class);
-                    startActivity(home);
-                }else{
-                    Toast.makeText(VistaPublicacion.this,"Error al reservar", Toast.LENGTH_LONG).show();
-                }
+                            Intent home = new Intent(VistaPublicacion.this, HomeUsuario.class);
+                            startActivity(home);
+                        } else {
+                            Toast.makeText(VistaPublicacion.this, "Error al reservar", Toast.LENGTH_LONG).show();
+                        }
 
-            }
-        });
+                    }
+                });
     }
 
 }

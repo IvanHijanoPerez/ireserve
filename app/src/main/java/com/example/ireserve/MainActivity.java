@@ -1,8 +1,5 @@
 package com.example.ireserve;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -12,6 +9,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText email, contrasena;
     private ProgressBar progressbar;
     private FirebaseAuth mAuth;
-
 
 
     @Override
@@ -51,12 +50,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
-
-
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.registro:
                 startActivity(new Intent(this, Registro.class));
                 break;
@@ -66,52 +62,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void login(){
+    private void login() {
         String em = email.getText().toString().trim();
         String con = contrasena.getText().toString().trim();
 
-        if(em.isEmpty()){
+        if (em.isEmpty()) {
             email.setError("Correo requerido");
             email.requestFocus();
             return;
         }
-        if(!Patterns.EMAIL_ADDRESS.matcher(em).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(em).matches()) {
             email.setError("Debe utilizar un correo válido");
             email.requestFocus();
             return;
         }
-        if(con.isEmpty()){
+        if (con.isEmpty()) {
             contrasena.setError("Contraseña requerida");
             contrasena.requestFocus();
             return;
         }
-        if(con.length()<6){
+        if (con.length() < 6) {
             contrasena.setError("La contraseña debe tener como mínimo 6 carácteres");
             contrasena.requestFocus();
             return;
         }
         progressbar.setVisibility(View.VISIBLE);
-        mAuth.signInWithEmailAndPassword(em,con).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(em, con).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     progressbar.setVisibility(View.GONE);
-                    Toast.makeText(MainActivity.this,"Inicio de sesión con éxito", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Inicio de sesión con éxito", Toast.LENGTH_LONG).show();
                     Intent home = new Intent(MainActivity.this, HomeUsuario.class);
                     startActivity(home);
-                }else{
-                    Toast.makeText(MainActivity.this,"Error al iniciar sesión", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Error al iniciar sesión", Toast.LENGTH_LONG).show();
                     progressbar.setVisibility(View.GONE);
                 }
             }
         });
     }
-
-
-
-
-
-
 
 
 }

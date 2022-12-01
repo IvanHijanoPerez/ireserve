@@ -23,25 +23,27 @@ import java.io.IOException;
 import java.util.List;
 
 public class ReservaAdapter extends ArrayAdapter<Reserva> {
-    public ReservaAdapter(Context context, int list_item_reserva, List<Reserva> reservaArrayList){
-        super(context,R.layout.list_item_reserva,reservaArrayList);
+    public ReservaAdapter(Context context, int list_item_reserva, List<Reserva> reservaArrayList) {
+        super(context, R.layout.list_item_reserva, reservaArrayList);
     }
+
     Publicacion publicacion;
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         Reserva reserva = getItem(position);
-        List <Publicacion> listaPublicaciones = SingletonMap.getInstance().map.get("publicaciones");
-        for(Publicacion p : listaPublicaciones){
-            if(p.getFoto().equals(reserva.publicacion)){
+        List<Publicacion> listaPublicaciones = SingletonMap.getInstance().map.get("publicaciones");
+        for (Publicacion p : listaPublicaciones) {
+            if (p.getFoto().equals(reserva.publicacion)) {
                 publicacion = p;
             }
         }
 
-        if (convertView == null){
+        if (convertView == null) {
 
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_reserva,parent,false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_reserva, parent, false);
 
         }
 
@@ -50,9 +52,9 @@ public class ReservaAdapter extends ArrayAdapter<Reserva> {
         TextView direccion = convertView.findViewById(R.id.direccionItemR);
         TextView tvfechacompleta = convertView.findViewById(R.id.tvfechacompleta);
 
-        StorageReference reference = FirebaseStorage.getInstance().getReference().child("Imagenes/"+publicacion.foto);
-        try{
-            File localFile = File.createTempFile("imagen","jpg");
+        StorageReference reference = FirebaseStorage.getInstance().getReference().child("Imagenes/" + publicacion.foto);
+        try {
+            File localFile = File.createTempFile("imagen", "jpg");
             reference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
@@ -60,7 +62,7 @@ public class ReservaAdapter extends ArrayAdapter<Reserva> {
                     foto.setImageBitmap(bitmap);
                 }
             });
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

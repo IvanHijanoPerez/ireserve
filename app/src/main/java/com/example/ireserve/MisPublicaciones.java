@@ -1,23 +1,18 @@
 package com.example.ireserve;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class MisPublicaciones extends AppCompatActivity {
 
@@ -35,12 +30,12 @@ public class MisPublicaciones extends AppCompatActivity {
         listaPub = SingletonMap.getInstance().map.get("publicaciones");
 
         List<Publicacion> l = new ArrayList<>();
-        for(Publicacion p : listaPub){
-            if(p.creador.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+        for (Publicacion p : listaPub) {
+            if (p.creador.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
                 l.add(p);
             }
         }
-        PublicacionAdapter publicacionAdapter = new PublicacionAdapter(MisPublicaciones.this,R.layout.list_item,l);
+        PublicacionAdapter publicacionAdapter = new PublicacionAdapter(MisPublicaciones.this, R.layout.list_item, l);
         listaPublicaciones.setAdapter(publicacionAdapter);
 
         listaPublicaciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {

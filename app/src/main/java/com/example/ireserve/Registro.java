@@ -1,8 +1,5 @@
 package com.example.ireserve;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -11,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -50,7 +50,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.registrarse:
                 registro();
                 break;
@@ -59,75 +59,75 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
 
     }
 
-    private void registro(){
+    private void registro() {
         String em = email.getText().toString().trim();
         String nom = nombre.getText().toString().trim();
         String cont = contrasena.getText().toString().trim();
         String ed = edad.getText().toString().trim();
 
-        if(nom.isEmpty()){
+        if (nom.isEmpty()) {
             nombre.setError("Nombre completo requerido");
             nombre.requestFocus();
             return;
         }
-        if(ed.isEmpty()){
+        if (ed.isEmpty()) {
             edad.setError("Edad requerida");
             edad.requestFocus();
             return;
         }
-        if(em.isEmpty()){
+        if (em.isEmpty()) {
             email.setError("Correo requerido");
             email.requestFocus();
             return;
         }
-        if(!Patterns.EMAIL_ADDRESS.matcher(em).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(em).matches()) {
             email.setError("Debe utilizar un correo válido");
             email.requestFocus();
             return;
         }
-        if(cont.isEmpty()){
+        if (cont.isEmpty()) {
             contrasena.setError("Contraseña requerida");
             contrasena.requestFocus();
             return;
         }
-        if(cont.length() < 6){
+        if (cont.length() < 6) {
             contrasena.setError("La contraseña debe tener como mínimo 6 carácteres");
             contrasena.requestFocus();
             return;
         }
 
         progressBar.setVisibility(View.VISIBLE);
-        mAuth.createUserWithEmailAndPassword(em,cont).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.createUserWithEmailAndPassword(em, cont).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Map<String, Object> usuario = new HashMap<>();
-                    usuario.put("nombreCompleto",nom);
-                    usuario.put("email",em);
-                    usuario.put("edad",Integer.parseInt(ed));
+                    usuario.put("nombreCompleto", nom);
+                    usuario.put("email", em);
+                    usuario.put("edad", Integer.parseInt(ed));
                     System.out.println(FirebaseAuth.getInstance().getCurrentUser().getUid());
                     FirebaseDatabase.getInstance("https://ireseve-8ead4-default-rtdb.europe-west1.firebasedatabase.app").getReference("Usuarios")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
-                                progressBar.setVisibility(View.GONE);
-                                Toast.makeText(Registro.this,"Usuario registrado con éxito", Toast.LENGTH_LONG).show();
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast.makeText(Registro.this, "Usuario registrado con éxito", Toast.LENGTH_LONG).show();
 
-                                SingletonMap.getInstance().iniciarSingletonMap();
+                                        SingletonMap.getInstance().iniciarSingletonMap();
 
-                                Intent login = new Intent(Registro.this, MainActivity.class);
-                                startActivity(login);
-                            }else{
-                                Toast.makeText(Registro.this,"Error al registrar usuario", Toast.LENGTH_LONG).show();
-                                progressBar.setVisibility(View.GONE);
-                            }
+                                        Intent login = new Intent(Registro.this, MainActivity.class);
+                                        startActivity(login);
+                                    } else {
+                                        Toast.makeText(Registro.this, "Error al registrar usuario", Toast.LENGTH_LONG).show();
+                                        progressBar.setVisibility(View.GONE);
+                                    }
 
-                        }
-                    });
-                }else{
-                    Toast.makeText(Registro.this,"Error al registrar usuario", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                } else {
+                    Toast.makeText(Registro.this, "Error al registrar usuario", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                 }
             }
