@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VistaMiPublicacion">
+
+  <TextView
+      android:id="@+id/ptituloMi"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/titulo_publicacion"
+      android:textSize="25sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.096"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.345" />
+
+  <TextView
+      android:id="@+id/pdireccionMi"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/direccion_publicacion"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.097"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.396" />
+
+  <ImageView
+      android:id="@+id/pfotoMi"
+      android:layout_width="371dp"
+      android:layout_height="188dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.494"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.028"
+      tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+  <View
+      android:id="@+id/divider3"
+      android:layout_width="384dp"
+      android:layout_height="1dp"
+      android:background="?android:attr/listDivider"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.481"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.709" />
+
+  <ListView
+      android:id="@+id/lvdiasMi"
+      android:layout_width="307dp"
+      android:layout_height="140dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.336"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.582" />
+
+  <ListView
+      android:id="@+id/lvhorasMi"
+      android:layout_width="309dp"
+      android:layout_height="144dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.343"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.952" />
+
+  <TextView
+      android:id="@+id/pprecioMi"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/precio_publicacion"
+      android:textSize="20sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.917"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.342" />
+
+  <TextView
+      android:id="@+id/textodias"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Días:"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.092"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.457" />
+
+  <TextView
+      android:id="@+id/textohoras"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Horas:"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.094"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.758" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

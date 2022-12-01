@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">iReserve</string>
+    <string name="resultados_busqueda">Search results</string>
+    <string name="nombre_home">Name</string>
+    <string name="busca_home">Search...</string>
+    <string name="cerrar_sesion">Sign out</string>
+    <string name="publicar_servicio">Publish service</string>
+    <string name="email">Email</string>
+    <string name="contra">Password</string>
+    <string name="login">Login</string>
+    <string name="crear_cuenta">¿Dont you have an account? Sign up</string>
+    <string name="servicios_publicados">My publish services</string>
+    <string name="publica_servicio">Publish your service</string>
+    <string name="titulo_publicacion">Title</string>
+    <string name="buscar_direccion_publicacion">Search address</string>
+    <string name="direccion_publicacion">Address</string>
+    <string name="descripcion_publicacion">Description</string>
+    <string name="dias_publicacion">Days</string>
+    <string name="L">M</string>
+    <string name="M">T</string>
+    <string name="X">W</string>
+    <string name="J">T</string>
+    <string name="V">F</string>
+    <string name="S">S</string>
+    <string name="D">S</string>
+    <string name="horas_publicacion">Hours (13:00-15:00,17:00... )</string>
+    <string name="precio_publicacion">Price</string>
+    <string name="imagen_publicacion">Image</string>
+    <string name="nombre_usuario">Full name</string>
+    <string name="edad_usuario">Age</string>
+    <string name="email_usuario">Email</string>
+    <string name="contra_usuario">Password</string>
+    <string name="registrarse">Register</string>
+    <string name="reservar">Reserve</string>
+    <string name="lunes">Monday</string>
+    <string name="martes">Tuesday</string>
+    <string name="miercoles">Wednesday</string>
+    <string name="jueves">Thursday</string>
+    <string name="viernes">Friday</string>
+    <string name="sabado">Saturday</string>
+    <string name="domingo">Sunday</string>
+
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/ProyectosAndroidStudio/iReserve/iReserve/app/src/main/res/layout/activity_busqueda_publicaciones.xml" value="0.32894736842105265" />
+        <entry key="..\:/ProyectosAndroidStudio/iReserve/iReserve/app/src/main/res/layout/activity_home.xml" value="0.35507246376811596" />
+        <entry key="..\:/ProyectosAndroidStudio/iReserve/iReserve/app/src/main/res/layout/activity_home_usuario.xml" value="0.20729166666666668" />
+        <entry key="..\:/ProyectosAndroidStudio/iReserve/iReserve/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/ProyectosAndroidStudio/iReserve/iReserve/app/src/main/res/layout/activity_mis_publicaciones.xml" value="0.34375" />
+        <entry key="..\:/ProyectosAndroidStudio/iReserve/iReserve/app/src/main/res/layout/activity_publicar.xml" value="0.32926829268292684" />
+        <entry key="..\:/ProyectosAndroidStudio/iReserve/iReserve/app/src/main/res/layout/activity_registro.xml" value="0.20520833333333333" />
+        <entry key="..\:/ProyectosAndroidStudio/iReserve/iReserve/app/src/main/res/layout/activity_vista_mi_publicacion.xml" value="0.5" />
+        <entry key="..\:/ProyectosAndroidStudio/iReserve/iReserve/app/src/main/res/layout/activity_vista_publicacion.xml" value="0.33" />
+        <entry key="..\:/ProyectosAndroidStudio/iReserve/iReserve/app/src/main/res/layout/list_item.xml" value="0.34375" />
+        <entry key="..\:/ProyectosAndroidStudio/iReserve/iReserve/app/src/main/res/layout/list_item_reserva.xml" value="0.3079710144927536" />
+        <entry key="..\:/ProyectosAndroidStudio/iReserve/iReserve/app/src/main/res/layout/list_item_string.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/rafar/AndroidStudioProjects/iReserve/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/rafar/AndroidStudioProjects/iReserve/app/src/main/res/layout/activity_registro.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/rafar/Documents/GitHub/iReserve/app/src/main/res/layout/activity_busqueda_publicaciones.xml" value="0.1634963768115942" />
+        <entry key="..\:/Users/rafar/Documents/GitHub/iReserve/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/rafar/Documents/GitHub/iReserve/app/src/main/res/layout/activity_registro.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/rafar/Documents/GitHub/iReserve/app/src/main/res/layout/activity_vista_publicacion.xml" value="0.25" />
+        <entry key="..\:/Users/rafar/Documents/GitHub/iReserve/app/src/main/res/layout/list_item.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/rafar/Documents/GitHub/iReserve/app/src/main/res/layout/list_item_string.xml" value="0.25" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "962098454752",
+    "firebase_url": "https://ireseve-8ead4-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "ireseve-8ead4",
+    "storage_bucket": "ireseve-8ead4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962098454752:android:d606a9c4c69e3aa352b085",
+        "android_client_info": {
+          "package_name": "com.example.ireserve"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962098454752-8suidihm99s12b3b0njn9b86769l9i44.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGEH9Lkq5WaapqI5yIJsayG1E5ycz6SDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962098454752-8suidihm99s12b3b0njn9b86769l9i44.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

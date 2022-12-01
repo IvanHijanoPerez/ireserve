@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">iReserve</string>
+    <string name="resultados_busqueda">Resultados de la búsqueda</string>
+    <string name="nombre_home">Nombre</string>
+    <string name="busca_home">Busca...</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="publicar_servicio">Publicar servicio</string>
+    <string name="email">Email</string>
+    <string name="contra">Contraseña</string>
+    <string name="login">Login</string>
+    <string name="crear_cuenta">¿No tienes una cuenta? Regístrate</string>
+    <string name="servicios_publicados">Mis servicios publicados</string>
+    <string name="publica_servicio">Publica tu servicio</string>
+    <string name="titulo_publicacion">Título</string>
+    <string name="buscar_direccion_publicacion">Buscar dirección</string>
+    <string name="direccion_publicacion">Dirección</string>
+    <string name="descripcion_publicacion">Descripción</string>
+    <string name="dias_publicacion">Días</string>
+    <string name="L">L</string>
+    <string name="M">M</string>
+    <string name="X">X</string>
+    <string name="J">J</string>
+    <string name="V">V</string>
+    <string name="S">S</string>
+    <string name="D">D</string>
+    <string name="horas_publicacion">Horas (13:00-15:00,17:00... )</string>
+    <string name="precio_publicacion">Precio</string>
+    <string name="imagen_publicacion">Imagen</string>
+    <string name="nombre_usuario">Nombre completo</string>
+    <string name="edad_usuario">Edad</string>
+    <string name="email_usuario">Email</string>
+    <string name="contra_usuario">Contraseña</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="reservar">Reservar</string>
+    <string name="lunes">Lunes</string>
+    <string name="martes">Martes</string>
+    <string name="miercoles">Miércoles</string>
+    <string name="jueves">Jueves</string>
+    <string name="viernes">Viernes</string>
+    <string name="sabado">Sábado</string>
+    <string name="domingo">Domingo</string>
+</resources>
